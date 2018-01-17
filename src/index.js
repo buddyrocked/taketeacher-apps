@@ -10,6 +10,7 @@ import reducers from './reducers';
 import App from './components/app';
 import GurusIndex from './components/gurus_index';
 import GurusNew from './components/teachers_new';
+import StudentsIndex from './components/students_index';
 
 
 
@@ -20,6 +21,7 @@ ReactDOM.render(
     <BrowserRouter>
       <div>
         <Switch>
+          <Route path="/student" component={StudentsIndex} />
           <Route path="/teacher/new" component={GurusNew} />
           <Route path="/teacher" component={GurusIndex} />
           <Route path="/" component={App} />

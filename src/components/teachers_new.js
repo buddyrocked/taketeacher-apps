@@ -9,8 +9,7 @@ class TeachersNew extends Component {
   renderField(field){
 
     const { meta : { touched, error } } = field;
-    //const className = `form-group ${ touched && error ? 'has-danger' : '' }`;
-    const className = 'form-group has-danger';
+    const className = `form-group ${ touched && error ? 'has-danger' : '' }`;
 
     return(
       <div className={className}>
@@ -21,7 +20,7 @@ class TeachersNew extends Component {
           { ...field.input }
         />
         <div className="text-help">
-          { error }
+          { touched ? error : '' }
         </div>
       </div>
     )
@@ -30,6 +29,7 @@ class TeachersNew extends Component {
   onSubmit(values){
     console.log(values);
     const teacher = { Gurus : values }
+
     this.props.createTeacher(teacher, () => {
       this.props.history.push('/');
     });
@@ -58,12 +58,12 @@ class TeachersNew extends Component {
 }
 
 function validate(values) {
-  //console.log(values);
+
   const errors = {};
 
-  //if(values.nama_depan){
-  errors.nama_depan = 'Enter Nama Depan';
-  //}
+  if(!values.nama_depan){
+    errors.nama_depan = 'Enter Nama Depan';
+  }
 
   return errors;
 }

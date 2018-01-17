@@ -6,12 +6,15 @@ export default class App extends Component {
     return (
       <div>
         <h1>WELCOME...!</h1>
-        <ul>
-          <li>
+        <ul className="list-group">
+          <li className="list-group-item">
             <Link to="/">Home</Link>
           </li>
-          <li>
+          <li className="list-group-item">
             <Link to="/teacher">Teacher</Link>
+          </li>
+          <li className="list-group-item">
+            <Link to="/student">Student</Link>
           </li>
         </ul>
       </div>
