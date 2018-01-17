@@ -11,6 +11,7 @@ import App from './components/app';
 import GurusIndex from './components/gurus_index';
 import GurusNew from './components/teachers_new';
 import StudentsIndex from './components/students_index';
+import StudentsNew from './components/students_new';
 
 
 
@@ -21,6 +22,7 @@ ReactDOM.render(
     <BrowserRouter>
       <div>
         <Switch>
+          <Route path="/student/new" component={StudentsNew} />
           <Route path="/student" component={StudentsIndex} />
           <Route path="/teacher/new" component={GurusNew} />
           <Route path="/teacher" component={GurusIndex} />

@@ -4,8 +4,9 @@ export const FETCH_GURUS = 'fetch_gurus';
 export const CREATE_TEACHER = 'create_teacher';
 
 export const FETCH_STUDENTS = 'fetch_students';
+export const CREATE_STUDENT = 'create_student';
 
-const ROOT_URL = 'http://localhost/take-teacher/backend/web/v1';
+const ROOT_URL = 'http://localhost/taketeacher/backend/web/v1';
 const API_KEY = '?access-token=4Bm_Y-G6RoxgJo0SUaOcrwOwNeCjrhx9';
 
 export function fetchGurus() {
@@ -32,6 +33,16 @@ export function fetchStudents() {
 
   return {
     type: FETCH_STUDENTS,
+    payload: request
+  }
+}
+
+export function createStudent(values, callback) {
+  const request = axios.post(`${ROOT_URL}/auth/register`, values)
+    .then(() => callback());
+
+  return {
+    type: CREATE_STUDENT,
     payload: request
   }
 }

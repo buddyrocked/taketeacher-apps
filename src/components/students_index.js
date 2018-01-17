@@ -58,7 +58,7 @@ class StudentsIndex extends Component {
           <Link to="/" className="btn btn-success">
             Back To Home
           </Link>
-          <Link to="/teacher/new" className="btn btn-primary">
+          <Link to="/student/new" className="btn btn-primary">
             Register
           </Link>
         </div>
