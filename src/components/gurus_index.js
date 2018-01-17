@@ -15,12 +15,12 @@ class GurusIndex extends Component {
       return (
         <li className="list-group-item" key={guru.id}>
           <div className="row">
-            <div className="col-md-2">
+            <div className="col-md-2 col-xs-4">
               <div className="thumbnail">
                 <img src={ guru.image_url } className="img-thumbnail" />
               </div>
             </div>
-            <div className="col-md-10">
+            <div className="col-md-10 col-xs-6">
               <h3>{ guru.nama_depan } { guru.nama_belakang }</h3>
               <p>
                 { guru.alamat }
@@ -53,8 +53,11 @@ class GurusIndex extends Component {
   render() {
     return (
       <div>
-        <h1>List Guru</h1>
+        <h1>Teachers List</h1>
         <div className="text-md-right">
+          <Link to="/" className="btn btn-success">
+            Back To Home
+          </Link>
           <Link to="/teacher/new" className="btn btn-primary">
             Register
           </Link>

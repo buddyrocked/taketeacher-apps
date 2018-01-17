@@ -6,6 +6,8 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import promise from 'redux-promise';
 
 import reducers from './reducers';
+
+import App from './components/app';
 import GurusIndex from './components/gurus_index';
 import GurusNew from './components/teachers_new';
 
@@ -20,7 +22,7 @@ ReactDOM.render(
         <Switch>
           <Route path="/teacher/new" component={GurusNew} />
           <Route path="/teacher" component={GurusIndex} />
-          <Route path="/murids" />
+          <Route path="/" component={App} />
         </Switch>
       </div>
     </BrowserRouter>
