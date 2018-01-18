@@ -63,7 +63,7 @@ class MenuAppBar extends React.Component {
               <MenuIcon />
             </IconButton>
             <Typography type="title" color="inherit" className={classes.flex}>
-              MY APP
+              MY APPS
             </Typography>
             {auth && (
               <div>
