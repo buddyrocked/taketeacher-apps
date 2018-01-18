@@ -7,6 +7,8 @@ import promise from 'redux-promise';
 
 import reducers from './reducers';
 
+import MenuAppBar from './components/menu_app_bar';
+import LabelBottomNavigation from './components/label_bottom_navigation';
 import App from './components/app';
 import GurusIndex from './components/gurus_index';
 import GurusNew from './components/teachers_new';
@@ -21,6 +23,7 @@ ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <BrowserRouter>
       <div>
+        <MenuAppBar />
         <Switch>
           <Route path="/student/new" component={StudentsNew} />
           <Route path="/student" component={StudentsIndex} />
@@ -28,6 +31,9 @@ ReactDOM.render(
           <Route path="/teacher" component={GurusIndex} />
           <Route path="/" component={App} />
         </Switch>
+        <div className="bottom-nav">
+          <LabelBottomNavigation />
+        </div>
       </div>
     </BrowserRouter>
   </Provider>
