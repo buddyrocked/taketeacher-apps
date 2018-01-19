@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchGurus } from '../actions';
+import Grid from 'material-ui/Grid';
 
 class GurusIndex extends Component {
 
@@ -14,19 +15,17 @@ class GurusIndex extends Component {
     return _.map(this.props.gurus.items, guru => {
       return (
         <li className="list-group-item" key={guru.id}>
-          <div className="row">
-            <div className="col-md-2 col-xs-4">
-              <div className="thumbnail">
-                <img src={ guru.image_url } className="img-thumbnail" />
-              </div>
-            </div>
-            <div className="col-md-10 col-xs-6">
+          <Grid container spacing={24}>
+            <Grid item xs={4} sm={4}>
+              <img src={ guru.image_url } className="img-thumbnail" />
+            </Grid>
+            <Grid item xs={8} sm={8}>
               <h3>{ guru.nama_depan } { guru.nama_belakang }</h3>
               <p>
                 { guru.alamat }
               </p>
-            </div>
-          </div>
+            </Grid>
+          </Grid>
         </li>
       );
     });
