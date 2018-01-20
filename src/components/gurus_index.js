@@ -4,6 +4,11 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchGurus } from '../actions';
 import Grid from 'material-ui/Grid';
+import List, { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List';
+import Checkbox from 'material-ui/Checkbox';
+import Avatar from 'material-ui/Avatar';
+import Divider from 'material-ui/Divider';
+
 
 class GurusIndex extends Component {
 
@@ -12,21 +17,14 @@ class GurusIndex extends Component {
   }
 
   renderGurus() {
+    const { classes } = this.props;
+
     return _.map(this.props.gurus.items, guru => {
       return (
-        <li className="list-group-item" key={guru.id}>
-          <Grid container spacing={24}>
-            <Grid item xs={4} sm={4}>
-              <img src={ guru.image_url } className="img-thumbnail" />
-            </Grid>
-            <Grid item xs={8} sm={8}>
-              <h3>{ guru.nama_depan } { guru.nama_belakang }</h3>
-              <p>
-                { guru.alamat }
-              </p>
-            </Grid>
-          </Grid>
-        </li>
+        <ListItem dense button key={guru.id} component={props => <Link {...props}/>} to="/">
+            <Avatar alt="Remy Sharp" src={ guru.image_url } />
+            <ListItemText primary={ `${guru.nama_depan}  ${guru.nama_belakang}` } />
+        </ListItem>
       );
     });
   }
@@ -52,18 +50,10 @@ class GurusIndex extends Component {
   render() {
     return (
       <div>
-        <h1>Teachers List</h1>
-        <div className="text-md-right">
-          <Link to="/" className="btn btn-success">
-            Back To Home
-          </Link>
-          <Link to="/teacher/new" className="btn btn-primary">
-            Register
-          </Link>
-        </div>
-        <ul className="list-group">
+        <h3>Teachers List</h3>
+        <List>
           { this.renderGurus() }
-        </ul>
+        </List>
         { this.renderPagination() }
       </div>
     );

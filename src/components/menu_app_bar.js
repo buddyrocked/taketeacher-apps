@@ -16,19 +16,22 @@ import ChevronLeftIcon from 'material-ui-icons/ChevronLeft';
 import ChevronRightIcon from 'material-ui-icons/ChevronRight';
 import { mailFolderListItems, otherMailFolderListItems } from './tileData';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Avatar from 'material-ui/Avatar';
 
+
+import MainMenu from './main_menu';
 import App from '../components/app';
 import GurusIndex from '../components/gurus_index';
 import GurusNew from '../components/teachers_new';
 import StudentsIndex from '../components/students_index';
 import StudentsNew from '../components/students_new';
 
-const drawerWidth = 240;
+const drawerWidth = 360;
 
 const styles = theme => ({
   root: {
     width: '100%',
-    height: 430,
+    height: '100%',
     marginTop: theme.spacing.unit * 3,
     zIndex: 1,
     overflow: 'hidden',
@@ -40,24 +43,25 @@ const styles = theme => ({
     height: '100%',
   },
   appBar: {
-    position: 'absolute',
+    position: 'fixed',
+    top:'0px',
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
   },
   appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
+    width: '100%',
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
   'appBarShift-left': {
-    marginLeft: drawerWidth,
+    marginLeft: 0,
   },
   'appBarShift-right': {
-    marginRight: drawerWidth,
+    marginRight: 0,
   },
   menuButton: {
     marginLeft: 0,
@@ -67,7 +71,7 @@ const styles = theme => ({
     display: 'none',
   },
   drawerPaper: {
-    position: 'relative',
+    position: 'absolute',
     height: '100%',
     width: drawerWidth,
   },
@@ -87,18 +91,18 @@ const styles = theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    height: 'calc(100% - 56px)',
+    height: '100%',
     marginTop: 56,
     [theme.breakpoints.up('sm')]: {
-      height: 'calc(100% - 64px)',
+      height: '100%',
       marginTop: 64,
     },
   },
   'content-left': {
-    marginLeft: -drawerWidth,
+    marginLeft: 0,
   },
   'content-right': {
-    marginRight: -drawerWidth,
+    marginRight: 0,
   },
   contentShift: {
     transition: theme.transitions.create('margin', {
@@ -112,6 +116,17 @@ const styles = theme => ({
   'contentShift-right': {
     marginRight: 0,
   },
+  row: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  avatar: {
+    margin: 10,
+  },
+  bigAvatar: {
+    width: 60,
+    height: 60,
+  }
 });
 
 class MenuAppBar extends React.Component {
@@ -140,7 +155,9 @@ class MenuAppBar extends React.Component {
 
     const drawer = (
       <Drawer
-
+        classes={{
+          paper: classes.drawerPaper,
+        }}
         anchor={anchor}
         open={open}
       >
@@ -149,6 +166,13 @@ class MenuAppBar extends React.Component {
             <IconButton onClick={this.handleDrawerClose}>
               {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
             </IconButton>
+          </div>
+          <div className={classes.row}>
+            <Avatar
+              alt="Adelle Charles"
+              src="/static/images/uxceo-128.jpg"
+              className={classNames(classes.avatar, classes.bigAvatar)}
+            />
           </div>
           <Divider />
           <List className={classes.list}>{mailFolderListItems}</List>
@@ -168,10 +192,15 @@ class MenuAppBar extends React.Component {
     }
 
     return (
-      <div>
-        <div>
-          <AppBar>
-            <Toolbar>
+      <div className={classes.root}>
+        <div className={classes.appFrame}>
+          <AppBar
+            className={classNames(classes.appBar, {
+              [classes.appBarShift]: open,
+              [classes[`appBarShift-${anchor}`]]: open,
+            })}
+          >
+            <Toolbar disableGutters={!open}>
               <IconButton
                 color="inherit"
                 aria-label="open drawer"
@@ -181,14 +210,19 @@ class MenuAppBar extends React.Component {
                 <MenuIcon />
               </IconButton>
               <Typography type="title" color="inherit" noWrap>
-                Persistent drawer
+                Take Teacher Apps
               </Typography>
             </Toolbar>
           </AppBar>
           {before}
-          <main>
+          <main
+            className={classNames(classes.content, classes[`content-${anchor}`], {
+              [classes.contentShift]: open,
+              [classes[`contentShift-${anchor}`]]: open,
+            })}
+          >
             <div className="content">
-              <Typography>{'You think water moves fast? You should see ice.'}</Typography>
+              <MainMenu />
               <Switch>
                 <Route path="/student/new" component={StudentsNew} />
                 <Route path="/student" component={StudentsIndex} />
@@ -204,7 +238,6 @@ class MenuAppBar extends React.Component {
     );
   }
 }
-
 MenuAppBar.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,

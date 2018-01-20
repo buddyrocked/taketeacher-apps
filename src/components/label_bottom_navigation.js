@@ -9,13 +9,15 @@ import FolderIcon from 'material-ui-icons/Folder';
 
 const styles = {
   root: {
-    width: 500,
+    width: '100%',
+    position: 'fixed',
+    bottom: '0px'
   },
 };
 
 class LabelBottomNavigation extends React.Component {
   state = {
-    value: 'recents',
+    value: 0,
   };
 
   handleChange = (event, value) => {
@@ -27,10 +29,15 @@ class LabelBottomNavigation extends React.Component {
     const { value } = this.state;
 
     return (
-      <BottomNavigation value={value} onChange={this.handleChange} className={classes.root}>
-        <BottomNavigationAction label="Recents" value="recents" icon={<RestoreIcon />} />
-        <BottomNavigationAction label="Favorites" value="favorites" icon={<FavoriteIcon />} />
-        <BottomNavigationAction label="Nearby" value="nearby" icon={<LocationOnIcon />} />
+      <BottomNavigation
+        value={value}
+        onChange={this.handleChange}
+        showLabels
+        className={classes.root}
+      >
+        <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
+        <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
+        <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
       </BottomNavigation>
     );
   }
