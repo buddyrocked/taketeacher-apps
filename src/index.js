@@ -10,14 +10,12 @@ import reducers from './reducers';
 import MenuAppBar from './components/menu_app_bar';
 import LabelBottomNavigation from './components/label_bottom_navigation';
 
-
-
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <BrowserRouter>
-      <div>
+      <div className="">
         <MenuAppBar />
         <div className="bottom-nav">
           <LabelBottomNavigation />

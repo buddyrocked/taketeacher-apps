@@ -35,6 +35,7 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 3,
     zIndex: 1,
     overflow: 'hidden',
+    fontType: theme.typography.button
   },
   appFrame: {
     position: 'relative',
@@ -45,17 +46,11 @@ const styles = theme => ({
   appBar: {
     position: 'fixed',
     top:'0px',
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
+    backgroundColor:'#E53935',
+    boxShadow:'none',
   },
   appBarShift: {
     width: '100%',
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
   },
   'appBarShift-left': {
     marginLeft: 0,
@@ -75,28 +70,26 @@ const styles = theme => ({
     height: '100%',
     width: drawerWidth,
   },
+  drawContainer: {
+    backgroundColor: '#EF5350'
+  },
   drawerHeader: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    padding: '0 8px',
-    ...theme.mixins.toolbar,
+    backgroundColor: '#EF5350',
+    color: 'white'
+  },
+  chevron: {
+    color: 'white'
   },
   content: {
     width: '100%',
     flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
-    padding: theme.spacing.unit * 3,
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
+    backgroundColor: 'white',
+    padding: 0,
     height: '100%',
-    marginTop: 56,
-    [theme.breakpoints.up('sm')]: {
-      height: '100%',
-      marginTop: 64,
-    },
+    marginTop: 32,
   },
   'content-left': {
     marginLeft: 0,
@@ -118,14 +111,20 @@ const styles = theme => ({
   },
   row: {
     display: 'flex',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   avatar: {
     margin: 10,
   },
   bigAvatar: {
-    width: 60,
-    height: 60,
+    width: 100,
+    height: 100,
+  },
+  loginName: {
+    textAlign: 'center',
+    backgroundColor: '#EF5350',
+    color: 'white',
+    padding: '10px 0'
   }
 });
 
@@ -162,19 +161,25 @@ class MenuAppBar extends React.Component {
         open={open}
       >
         <div className={classes.drawerInner}>
-          <div className={classes.drawerHeader}>
-            <IconButton onClick={this.handleDrawerClose}>
-              {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-            </IconButton>
+          <div className={classes.drawContainer}>
+            <div className={classes.drawerHeader}>
+              <IconButton onClick={this.handleDrawerClose} className={classes.chevron}>
+                {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+              </IconButton>
+            </div>
+            <div className={classes.row}>
+              <div>
+                <Avatar
+                  alt="Adelle Charles"
+                  src="/static/images/uxceo-128.jpg"
+                  className={classNames(classes.avatar, classes.bigAvatar)}
+                />
+              </div>
+            </div>
+            <div className={classes.loginName}>
+              Budi Hariyana
+            </div>
           </div>
-          <div className={classes.row}>
-            <Avatar
-              alt="Adelle Charles"
-              src="/static/images/uxceo-128.jpg"
-              className={classNames(classes.avatar, classes.bigAvatar)}
-            />
-          </div>
-          <Divider />
           <List className={classes.list}>{mailFolderListItems}</List>
           <Divider />
           <List className={classes.list}>{otherMailFolderListItems}</List>
@@ -210,7 +215,7 @@ class MenuAppBar extends React.Component {
                 <MenuIcon />
               </IconButton>
               <Typography type="title" color="inherit" noWrap>
-                Take Teacher Apps
+                Taketeacher
               </Typography>
             </Toolbar>
           </AppBar>
@@ -222,7 +227,6 @@ class MenuAppBar extends React.Component {
             })}
           >
             <div className="content">
-              <MainMenu />
               <Switch>
                 <Route path="/student/new" component={StudentsNew} />
                 <Route path="/student" component={StudentsIndex} />
