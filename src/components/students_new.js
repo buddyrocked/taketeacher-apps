@@ -3,13 +3,28 @@ import { Link } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { createStudent } from '../actions';
+import PropTypes from 'prop-types';
+import { withStyles } from 'material-ui/styles';
+import TextField from 'material-ui/TextField';
 
+const styles = theme => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    width: 200,
+  },
+});
 
 class StudentsNew extends Component {
   renderField(field){
 
     const { meta : { touched, error } } = field;
     const className = `form-group ${ touched && error ? 'has-danger' : '' }`;
+
 
     return(
       <div className={className}>
@@ -34,6 +49,7 @@ class StudentsNew extends Component {
 
   render() {
     const { handleSubmit } = this.props;
+    const { classes } = this.props;
 
     return (
       <div>
@@ -42,20 +58,33 @@ class StudentsNew extends Component {
         </Link>
         <hr />
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-          <Field
-            label="Nama Depan"
+          <TextField
+            id="name"
             name="Murid[nama_depan]"
-            component={this.renderField}
+            label="Nama Depan"
+            className={classes.textField}
+            margin="normal"
           />
-          <Field
-            label="Nama Belakang"
+          <TextField
+            id="nama_belakang"
             name="Murid[nama_belakang]"
-            component={this.renderField}
+            label="Nama Belakang"
+            className={classes.textField}
+            margin="normal"
           />
-          <Field
-            label="Telepon"
+          <TextField
+            id="telpon"
             name="Murid[telpon]"
-            component={this.renderField}
+            label="Telepon"
+            className={classes.textField}
+            margin="normal"
+          />
+          <TextField
+            id="alamat"
+            name="Murid[alamat]"
+            label="Alamat"
+            className={classes.textField}
+            margin="normal"
           />
           <Field
             label="Longitude"
@@ -79,12 +108,12 @@ class StudentsNew extends Component {
           />
           <Field
             label="status"
-            name="Murid[status]"
+            name="User[status]"
             component={this.renderField}
           />
           <Field
             label="username"
-            name="Murid[username]"
+            name="User[username]"
             component={this.renderField}
           />
           <Field
@@ -135,9 +164,13 @@ function validate(values) {
   return errors;
 }
 
-export default reduxForm({
+StudentsNew.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+StudentsNew =  reduxForm({
   validate,
   form: 'StudentsNewForm'
-})(
-  connect(null, { createStudent })(StudentsNew)
-);
+})(StudentsNew);
+
+export default withStyles(styles)(connect(null, { createStudent })(StudentsNew))

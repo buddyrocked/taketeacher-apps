@@ -176,8 +176,8 @@ class MenuAppBar extends React.Component {
                 />
               </div>
             </div>
-            <div className={classes.loginName}>
-              Budi Hariyana
+            <div>
+              <Typography className={classes.loginName}>Budi Hariyana</Typography>
             </div>
           </div>
           <List className={classes.list}>{mailFolderListItems}</List>
