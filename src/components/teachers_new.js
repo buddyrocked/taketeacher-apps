@@ -27,7 +27,6 @@ class TeachersNew extends Component {
   }
 
   onSubmit(values){
-    console.log(values);
     const teacher = { Gurus : values }
 
     this.props.createTeacher(teacher, () => {

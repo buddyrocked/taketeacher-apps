@@ -79,7 +79,7 @@ class GurusIndex extends Component {
 }
 
 function mapStateToProps(state) {
-  return { gurus: state.gurus };
+  return { gurus: state.gurus, title: 'Teacher Lists' };
 }
 
 GurusIndex.propTypes = {

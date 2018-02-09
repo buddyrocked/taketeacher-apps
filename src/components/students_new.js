@@ -86,65 +86,91 @@ class StudentsNew extends Component {
             className={classes.textField}
             margin="normal"
           />
-          <Field
-            label="Longitude"
+          <TextField
+            id="longitude"
             name="Murid[longitude]"
-            component={this.renderField}
+            label="Longitude"
+            className={classes.textField}
+            margin="normal"
           />
-          <Field
-            label="Latitude"
+          <TextField
+            id="latitude"
             name="Murid[latitude]"
-            component={this.renderField}
+            label="Latitude"
+            className={classes.textField}
+            margin="normal"
           />
-          <Field
-            label="email"
+          <TextField
+            id="email"
             name="Murid[email]"
-            component={this.renderField}
+            label="Email"
+            className={classes.textField}
+            margin="normal"
           />
-          <Field
-            label="image"
+          <TextField
+            id="image"
             name="Murid[image]"
-            component={this.renderField}
+            label="Image"
+            className={classes.textField}
+            margin="normal"
           />
-          <Field
-            label="status"
+          <TextField
+            id="status"
             name="User[status]"
-            component={this.renderField}
+            label="Status"
+            className={classes.textField}
+            margin="normal"
           />
-          <Field
-            label="username"
+          <TextField
+            id="username"
             name="User[username]"
-            component={this.renderField}
+            label="Username"
+            className={classes.textField}
+            margin="normal"
           />
-          <Field
-            label="password"
+          <TextField
+            id="password"
             name="User[password]"
-            component={this.renderField}
+            label="Password"
+            className={classes.textField}
+            margin="normal"
           />
-          <Field
-            label="repeat password"
-            name="User[repeat_password]"
-            component={this.renderField}
+          <TextField
+            id="repeat_passowrd"
+            name="User[repeat_passowrd]"
+            label="Repeat Passowrd"
+            className={classes.textField}
+            margin="normal"
           />
-          <Field
-            label="bind_to_ip"
+          <TextField
+            id="bind_to_ip"
             name="User[bind_to_ip]"
-            component={this.renderField}
+            label="bind_to_ip"
+            className={classes.textField}
+            margin="normal"
           />
-          <Field
-            label="email"
+          <TextField
+            id="email"
             name="User[email]"
-            component={this.renderField}
+            label="email"
+            className={classes.textField}
+            margin="normal"
           />
-          <Field
-            label="email_confirmed"
+          <TextField
+            id="email_confirmed"
             name="User[email_confirmed]"
-            component={this.renderField}
+            label="email_confirmed"
+            className={classes.textField}
+            margin="normal"
+            value="1"
           />
-          <Field
-            label="role"
+          <TextField
+            id="role"
             name="role"
-            component={this.renderField}
+            label="Role"
+            className={classes.textField}
+            value="1"
+            margin="normal"
           />
           <button type="submit" className="btn btn-primary">Submit</button>
         </form>

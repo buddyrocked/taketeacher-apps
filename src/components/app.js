@@ -13,6 +13,8 @@ import AttachMoney from 'material-ui-icons/AttachMoney';
 import TrendingUp from 'material-ui-icons/TrendingUp';
 import IconButton  from 'material-ui/IconButton';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { home } from '../actions';
 
 const styles = theme => ({
   root: {
@@ -54,10 +56,17 @@ const styles = theme => ({
   }
 });
 
-function App(props) {
-  const { classes } = props;
+class App extends Component {
 
-  return (
+  componentDidMount() {
+      this.props.home();
+  }
+
+  render() {
+
+    const { classes } = this.props;
+
+    return (
     <div className={classes.root}>
       <Grid container spacing={0}>
         <Grid item xs={12}>
@@ -111,11 +120,16 @@ function App(props) {
         </Grid>
       </Grid>
     </div>
-  );
+    );
+  }
+}
+
+function mapStateToProps(state) {
+  return { title: 'Teacher Lists' };
 }
 
 App.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(App);
+export default withStyles(styles)(connect(mapStateToProps, { home })(App));

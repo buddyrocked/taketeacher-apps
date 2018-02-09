@@ -132,6 +132,7 @@ class MenuAppBar extends React.Component {
   state = {
     open: false,
     anchor: 'left',
+    title: 'Taketeacher Apps'
   };
 
   handleDrawerOpen = () => {
@@ -150,7 +151,7 @@ class MenuAppBar extends React.Component {
 
   render() {
     const { classes, theme } = this.props;
-    const { anchor, open } = this.state;
+    const { anchor, open, title } = this.state;
 
     const drawer = (
       <Drawer
@@ -215,7 +216,7 @@ class MenuAppBar extends React.Component {
                 <MenuIcon />
               </IconButton>
               <Typography type="title" color="inherit" noWrap>
-                Taketeacher
+                { title }
               </Typography>
             </Toolbar>
           </AppBar>
