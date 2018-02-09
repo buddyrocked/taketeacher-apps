@@ -17,7 +17,6 @@ export function home() {
                               title : 'Ini Title'
                     }
                   };
-  console.log(request);
   return {
     type: HOME,
     payload: request
